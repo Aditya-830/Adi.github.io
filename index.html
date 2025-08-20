@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aditya Mishra - Portfolio</title>
   <style>
-    /* ====== RESET ====== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: "Poppins", sans-serif;
       background: #f9f9f9;
       color: #333;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
     a { text-decoration: none; color: inherit; }
 
@@ -21,6 +21,7 @@
       color: white;
       text-align: center;
       padding: 60px 20px;
+      position: relative;
     }
     header img {
       width: 130px;
@@ -36,6 +37,12 @@
     header p {
       font-size: 1.2rem;
       margin-bottom: 20px;
+      min-height: 28px; /* for typing effect space */
+    }
+
+    /* ====== NAVBAR ====== */
+    nav {
+      margin-top: 20px;
     }
     nav a {
       margin: 0 15px;
@@ -44,12 +51,32 @@
       transition: color 0.3s;
     }
     nav a:hover { color: #ffd700; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
     /* ====== CONTAINER ====== */
     .container {
       max-width: 1100px;
       margin: 40px auto;
       padding: 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .container.show {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       margin-bottom: 15px;
@@ -57,12 +84,6 @@
       border-bottom: 3px solid #3498db;
       display: inline-block;
       padding-bottom: 5px;
-    }
-
-    /* ====== ABOUT ====== */
-    #about p {
-      font-size: 1.1rem;
-      margin-top: 10px;
     }
 
     /* ====== PROJECTS ====== */
@@ -77,15 +98,18 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .project:hover { transform: translateY(-5px); }
+    .project:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
     .project h3 { margin-bottom: 10px; color: #3498db; }
 
     /* ====== CONTACT ====== */
     .social a {
       margin: 0 10px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       color: #3498db;
       transition: color 0.3s;
@@ -105,20 +129,31 @@
     @media (max-width: 768px) {
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        margin-top: 15px;
+      }
+      .nav-links.show { display: flex; }
+      .nav-links a { margin: 10px 0; }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
-    <!-- Apni Profile Photo ka URL yaha lagao -->
     <img src="https://via.placeholder.com/150" alt="Aditya Mishra">
     <h1>Aditya Mishra</h1>
-    <p>🚀 Frontend Developer | 🎨 Graphics Designer | 🎬 Video Editor</p>
+    <p id="typing"></p>
+
+    <span class="menu-toggle">☰</span>
     <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
     </nav>
   </header>
 
@@ -147,15 +182,16 @@
         <a href="https://github.com/Aditya/project1" target="_blank">GitHub Repo</a>
       </div>
       <div class="project">
-        <h3>Health-care Application</h3>
+        <h3>🏥 Health-care Application</h3>
+        <p>Application focused on improving patient care with digital solutions.</p>
         <a href="https://github.com/Aditya/project2" target="_blank">GitHub Repo</a>
       </div>
       <div class="project">
         <h3>🎬 YouTube Showcase</h3>
         <p>Collection of my creative video editing projects on YouTube.</p>
-        <a href="https://youtube.com/@HunterBabaYT" target="_blank">Watch Now</a>
-         <a href="https://youtube.com/@Virel_facT0" target="_blank">Watch Now</a>
-         <a href="https://youtube.com/@ShivasudhwelfareFoundation" target="_blank">Watch Now</a>
+        <a href="https://youtube.com/@HunterBabaYT" target="_blank">HunterBabaYT</a>
+        <a href="https://youtube.com/@Virel_facT0" target="_blank">Virel_facT0</a>
+        <a href="https://youtube.com/@ShivasudhwelfareFoundation" target="_blank">Shiv Asudhwelfare Foundation</a>
       </div>
     </div>
   </div>
@@ -165,11 +201,11 @@
     <h2>Contact</h2>
     <p>📧 Email: <a href="mailto:adityamishra638733@gmail.com">MyGmail</a></p>
     <div class="social">
-      <a href="https://www.linkedin.com/in/aditya-mishra-014392246?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/aditya-mishra-014392246" target="_blank">LinkedIn</a>
       <a href="https://github.com/Aditya-830" target="_blank">GitHub</a>
       <a href="https://youtube.com/@HunterBabaYT" target="_blank">YouTube</a>
       <a href="https://youtube.com/@Virel_facT0" target="_blank">YouTube</a>
-      <a href="https://www.instagram.com/__aditya62?igsh=M3o3YWQ0NWVyMTZj" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/__aditya62" target="_blank">Instagram</a>
     </div>
   </div>
 
@@ -177,5 +213,51 @@
   <footer>
     <p>© 2025 Aditya Mishra | Built with ❤️ and GitHub Pages</p>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Typing Effect
+    const typingElement = document.getElementById("typing");
+    const texts = ["🚀 Frontend Developer", "🎨 Graphics Designer", "🎬 Video Editor"];
+    let index = 0, charIndex = 0, currentText = "", isDeleting = false;
+
+    function type() {
+      currentText = texts[index];
+      if (!isDeleting) {
+        typingElement.textContent = currentText.slice(0, ++charIndex);
+        if (charIndex === currentText.length) {
+          isDeleting = true;
+          setTimeout(type, 1200);
+          return;
+        }
+      } else {
+        typingElement.textContent = currentText.slice(0, --charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          index = (index + 1) % texts.length;
+        }
+      }
+      setTimeout(type, isDeleting ? 80 : 120);
+    }
+    type();
+
+    // Toggle Menu
+    const toggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    toggle.addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    // Scroll Animation
+    const containers = document.querySelectorAll(".container");
+    window.addEventListener("scroll", () => {
+      containers.forEach(c => {
+        const rect = c.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          c.classList.add("show");
+        }
+      });
+    });
+  </script>
 </body>
 </html>

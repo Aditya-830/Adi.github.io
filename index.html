@@ -5,50 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aditya Mishra - Portfolio</title>
   <style>
-    /* ====== RESET ====== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: "Poppins", sans-serif;
-      background: #0d1b2a;  /* Dark Blue */
+      background: #0d1b2a;  
       color: #f1f1f1;
       line-height: 1.6;
       scroll-behavior: smooth;
     }
     a { text-decoration: none; color: inherit; }
 
-    /* ====== HEADER ====== */
+    /* ===== HEADER / INTRO CARD ===== */
     header {
       background: linear-gradient(135deg, #1b263b, #415a77);
       color: white;
       text-align: center;
-      padding: 60px 20px;
-      position: relative;
+      padding: 50px 20px;
+      border-radius: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     }
     header img {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      border: 4px solid white;
+      border: 4px solid #ffd700;
       margin-bottom: 15px;
+      transition: transform 0.3s;
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-}
-    
+    header img:hover { transform: scale(1.05); }
+    header h1 { font-size: 2.8rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; margin-bottom: 20px; opacity: 0.9; }
     nav a {
       margin: 0 15px;
-      color: white;
+      color: #ffd700;
       font-weight: bold;
       transition: color 0.3s;
     }
-    nav a:hover { color: #ffd700; }
+    nav a:hover { color: #fff; }
 
-    /* Typing Animation */
     .typing {
       border-right: 2px solid #ffd700;
       display: inline-block;
@@ -56,19 +52,17 @@
       overflow: hidden;
       animation: typing 4s steps(30) infinite alternate, blink 0.6s infinite;
     }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 20%; }
-    }
-    @keyframes smooth {
-      50% { border-color: transparent; }
-    }
+    @keyframes typing { from { width: 0; } to { width: 70%; } }
+    @keyframes blink { 40% { border-color: transparent; } }
 
-    /* ====== CONTAINER ====== */
+    /* ===== SECTIONS (card style) ===== */
     .container {
       max-width: 1100px;
       margin: 40px auto;
-      padding: 20px;
+      padding: 30px;
+      background: #1b263b;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
     h2 {
       margin-bottom: 15px;
@@ -78,46 +72,86 @@
       padding-bottom: 5px;
     }
 
-    /* ====== ABOUT ====== */
+    /* ===== ABOUT ===== */
     #about {
       background: linear-gradient(135deg, #1e3c72, #2a5298);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       animation: gradientBG 6s infinite alternate;
+      color: #fff;
     }
-    #about p {
-      font-size: 1.1rem;
-      margin-top: 10px;
-    }
+    #about p { font-size: 1.1rem; margin-top: 10px; }
     @keyframes gradientBG {
       0% { background: linear-gradient(135deg, #1e3c72, #2a5298); }
       100% { background: linear-gradient(135deg, #2a5298, #1e3c72); }
     }
 
-    /* ====== PROJECTS ====== */
+    /* ===== PROJECTS ===== */
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
       margin-top: 20px;
     }
     .project {
-      background: #1b263b;
+      background: #16213e;
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      transition: transform 0.3s, background 0.3s;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
     .project:hover { 
-      transform: translateY(-5px);
+      transform: translateY(-5px) scale(1.02);
       background: #274c77;
     }
     .project h3 { margin-bottom: 10px; color: #ffd700; }
 
-    /* ====== CONTACT ====== */
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #1b263b;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      animation: fadeIn 0.5s ease;
+    }
+    .modal-content h3 { color: #ffd700; margin-bottom: 20px; }
+    .modal-content a {
+      display: block;
+      margin: 10px 0;
+      color: #ffd700;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    .modal-content a:hover { color: #f1f1f1; }
+    .close-btn {
+      background: #ffd700;
+      color: #1b263b;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ===== CONTACT ===== */
+    #contact p { margin-bottom: 10px; }
     .social a {
-      margin: 0 10px;
+      margin: 0 12px;
       font-size: 1.2rem;
       font-weight: bold;
       color: #ffd700;
@@ -125,16 +159,16 @@
     }
     .social a:hover { color: #f1f1f1; }
 
-    /* ====== FOOTER ====== */
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
       background: #1b263b;
       color: white;
       padding: 15px;
       margin-top: 40px;
+      border-top: 2px solid #ffd700;
     }
 
-    /* ====== RESPONSIVE ====== */
     @media (max-width: 768px) {
       header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
@@ -142,7 +176,6 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <img src="adi.jpeg" alt="Aditya Mishra">
     <h1 class="typing">Aditya Mishra</h1>
@@ -154,7 +187,6 @@
     </nav>
   </header>
 
-  <!-- About Section -->
   <div class="container" id="about">
     <h2>About Me</h2>
     <p>
@@ -164,59 +196,64 @@
     </p>
   </div>
 
-  <!-- Projects Section -->
   <div class="container" id="projects">
     <h2>Projects</h2>
     <div class="projects">
-      <div class="project">
+      <div class="project" onclick="window.open('https://github.com/Aditya-830/aditya.github.io', '_blank')">
         <h3>🌐 Portfolio Website</h3>
         <p>My personal portfolio website showcasing my skills and work.</p>
-        <a href="https://github.com/Aditya-830/aditya.github.io" target="_blank">View Project</a>
       </div>
-      <div class="project">
-        <h3>🔐 Digital Signature Verification</h3>
-        <p>College project developed with my team using cryptography concepts.</p>
-        <a href="https://github.com/2FA project" target="_blank">GitHub Repo</a>
+      <div class="project" onclick="window.open('https://github.com/Aditya-830/Adi.github.io', '_blank')">
+        <h3>Main Code profile</h3>
+        <p>All code here</p>
       </div>
-       <div class="project">
-        <h3>🔐 Digital Signature Verification</h3>
-        <p>College project developed with my team using cryptography concepts.</p>
-        <a href="https://github.com/3d image" target="_blank">GitHub Repo</a>
-      </div>
-       <div class="project">
-        <h3>🏥 Virtual Assistant</h3>
-        <a href="https://https://github.com/Aditya-830/MINI PROJECT" target="_blank">GitHub Repo</a>
-      </div>
-       <div class="project">
-        <h3>Project RPS</h3>
-        <a href="https://https://github.com/Aditya-830/Game-RPS" target="_blank">GitHub Repo</a>
-      </div>
-      <div class="project">
+    
+      <div class="project" onclick="openModal()">
         <h3>🎬 YouTube Showcase</h3>
         <p>Collection of my creative video editing projects on YouTube.</p>
-        <a href="https://youtube.com/@HunterBabaYT" target="_blank">Watch Now</a>
-        <a href="https://youtube.com/@Virel_facT0" target="_blank">Watch Now</a>
-        <a href="https://youtube.com/@ShivasudhwelfareFoundation" target="_blank">Watch Now</a>
       </div>
     </div>
   </div>
 
-  <!-- Contact Section -->
+  <!-- Modal -->
+  <div id="youtubeModal" class="modal">
+    <div class="modal-content">
+      <h3>🎥 My YouTube Links</h3>
+      <a href="https://youtube.com/@HunterBabaYT" target="_blank">HunterBabaYT Channel</a>
+      <a href="https://youtube.com/@Virel_facT0" target="_blank">Virel_facT0 Channel</a>
+      <a href="https://youtube.com/@ShivasudhwelfareFoundation" target="_blank">Shivasudh Welfare Foundation</a>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
   <div class="container" id="contact">
     <h2>Contact</h2>
-    <p>📧 Email: <a href="adityamishra638733@gmail.com">Gmail</a></p>
+    
     <div class="social">
       <a href="https://www.linkedin.com/in/aditya-mishra-014392246" target="_blank">LinkedIn</a>
       <a href="https://github.com/Aditya-830" target="_blank">GitHub</a>
-      <a href="https://youtube.com/@HunterBabaYT" target="_blank">YouTube</a>
       <a href="https://youtube.com/@Virel_facT0" target="_blank">YouTube</a>
       <a href="https://www.instagram.com/__aditya62" target="_blank">Instagram</a>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Aditya Mishra | Built with ❤️ and GitHub Pages</p>
   </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById("youtubeModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("youtubeModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+      let modal = document.getElementById("youtubeModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
